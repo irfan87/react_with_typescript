@@ -4,6 +4,7 @@ import "./App.css";
 import { AddNewTodoComponent } from "./components/AddNewTodoComponent";
 import { CustomChildComponent } from "./components/CustomChildComponent";
 import { Button } from "./components/generics/Button.generics";
+import { MyContext, PostContextProvider } from "./components/MyContext";
 import { MyNetworkRequest } from "./components/MyNetworkRequest";
 
 import { Todo } from "./interface/Todo";
@@ -76,6 +77,9 @@ function App() {
 				))}
 			</ul>
 			<MyNetworkRequest />
+			<PostContextProvider>
+				<MyContext />
+			</PostContextProvider>
 		</div>
 	);
 }

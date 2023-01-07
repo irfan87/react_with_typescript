@@ -35,8 +35,6 @@ export const MyNetworkRequest = () => {
 					</li>
 				))}
 			</ul>
-
-			{/* {JSON.stringify(data)} */}
 		</>
 	);
 };
