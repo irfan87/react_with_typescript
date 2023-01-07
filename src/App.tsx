@@ -1,34 +1,50 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import { AddNewTodoComponent } from "./components/AddNewTodoComponent";
+import { CustomChildComponent } from "./components/CustomChildComponent";
+import { Button } from "./components/generics/Button.generics";
+import { Todo } from "./interface/Todo";
 
 function App() {
-  const [count, setCount] = useState(0)
+	const [items, setItems] = useState<Todo[]>([]);
 
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+	const sendGreetings = () => {
+		console.log("test");
+	};
+
+	const addNewTodo = (text: Todo["text"]) => {
+		return setItems([...items, { text, id: items.length + 1 }]);
+	};
+
+	const removeItem = (id: Todo["id"]) => {
+		return setItems([...items.filter((item) => item.id !== id)]);
+	};
+
+	return (
+		<div className="App">
+			<CustomChildComponent title={"test title"} body={"test body"}>
+				<div>
+					<h3>This render through children of CustomChildComponent</h3>
+				</div>
+				<Button
+					onClick={() => sendGreetings()}
+					styles={{ backgroundColor: "green" }}
+				>
+					Click me
+				</Button>
+			</CustomChildComponent>
+			<AddNewTodoComponent handleClick={addNewTodo} />
+			<h1>You have {items.length} todos</h1>
+			<ul>
+				{items.map((item) => (
+					<li key={item.id}>
+						<span>{item.text}</span>
+						<button onClick={() => removeItem(item.id)}>X</button>
+					</li>
+				))}
+			</ul>
+		</div>
+	);
 }
 
-export default App
+export default App;
