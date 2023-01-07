@@ -1,8 +1,11 @@
 import { useReducer, useState } from "react";
 import "./App.css";
+
 import { AddNewTodoComponent } from "./components/AddNewTodoComponent";
 import { CustomChildComponent } from "./components/CustomChildComponent";
 import { Button } from "./components/generics/Button.generics";
+import { MyNetworkRequest } from "./components/MyNetworkRequest";
+
 import { Todo } from "./interface/Todo";
 
 const initialState = {
@@ -72,6 +75,7 @@ function App() {
 					</li>
 				))}
 			</ul>
+			<MyNetworkRequest />
 		</div>
 	);
 }
